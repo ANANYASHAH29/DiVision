@@ -59,8 +59,9 @@ npm run dev
 Open http://localhost:5173 . You should see the DiVision dashboard. Open http://127.0.0.1:8000/docs to see the API;
 find **POST /api/interior/analyze**, that is your endpoint.
 
-**You do not need the exterior model weights.** Without `data/weights/damage_seg.pt` the dashboard still opens;
-only exterior inspections fail with a "weights not found" message. Ignore that.
+The trained exterior model (`data/weights/damage_seg.pt`) is already in the repo, so you can also try a full
+exterior inspection: upload a car video or photos with any 17-character chassis number such as
+`MA3EWDE1S00123456`. You do not need it for the interior work.
 
 ---
 

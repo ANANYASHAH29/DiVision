@@ -11,13 +11,14 @@ data/runs/
 data/verifier/
 data/*.db
 data/*.sqlite*
-# model weights are shared directly (not via git)
-data/weights/
+# model files: ignore everything except the trained damage model, which teammates need
 *.pt
 *.pth
 *.onnx
 *.npz
 *.zip
+data/weights/*
+!data/weights/damage_seg.pt
 
 # --- environments / build output ---
 .venv/

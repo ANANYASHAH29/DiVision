@@ -42,17 +42,19 @@ Requirements: Git, Python 3.10-3.12, Node.js 20+.
    API docs: http://127.0.0.1:8000/docs
 5. **Start the dashboard** in a second terminal: `cd frontend`, `npm install`, `npm run dev`, then open
    http://localhost:5173
-6. **Model weights (exterior inspections only):** not in git. Get `damage_seg.pt` from the maintainers and put it in
-   `data/weights/`. Check http://127.0.0.1:8000/api/health shows `"damage_weights": true`.
+6. **Model weights:** the trained damage model `data/weights/damage_seg.pt` (20 MB) is included in the repo.
+   Check http://127.0.0.1:8000/api/health shows `"damage_weights": true`. Then upload a video or photos in the
+   dashboard (a 17-character chassis number is required, e.g. `MA3EWDE1S00123456`).
 7. **Run on one video without the UI:** `python scripts/run_video.py video.mp4`
 
 Interior / odometer work does not need the weights: see [docs/TEAMMATE_INTERIOR.md](docs/TEAMMATE_INTERIOR.md).
 
 ## Train
-1. Download CarDD (https://cardd-ustc.github.io) and extract to `data/raw/CarDD_release`.
+1. Download CarDD (5.6 GB, https://cardd-ustc.github.io; the authors' Google Drive file is
+   `gdown 1bbyqVCKZX5Ur5Zg-uKj0jD0maWAVeOLx -O CarDD_release.zip`) and extract to `data/raw/CarDD_release`.
 2. `python scripts/prepare_cardd.py --src data/raw/CarDD_release`
 3. Train on a GPU (Colab/Kaggle): `python scripts/train.py --epochs 100 --device 0`
 
 ## Layout
 `backend/app` API, pipeline, rules - `frontend/src` dashboard - `scripts` data prep and evaluation -
-`docs` team notes (see [docs/TEAMMATE_INTERIOR.md](docs/TEAMMATE_INTERIOR.md)).
+`docs` team notes ([teammate guide](docs/TEAMMATE_INTERIOR.md), [evaluation results](docs/EVALUATION.md)).
