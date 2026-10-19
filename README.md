@@ -109,7 +109,7 @@ already included. Check `git status` before every commit. Stuck for 30 minutes? 
 `backend/app` API, pipeline and rules - `frontend/src` dashboard - `scripts` data prep and evaluation -
 `docs` team notes - `data/weights/damage_seg.pt` the trained model.
 
-## Maintainers only: retraining (teammates can skip this section)
+## Maintainers only: retraining 
 1. Download CarDD (5.6 GB, https://cardd-ustc.github.io; the authors' Google Drive file is
    `gdown 1bbyqVCKZX5Ur5Zg-uKj0jD0maWAVeOLx -O CarDD_release.zip`) and extract to `data/raw/CarDD_release`.
 2. `python scripts/prepare_cardd.py --src data/raw/CarDD_release`
