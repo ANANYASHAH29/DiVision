@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from . import chassis, config, db
+from .interior_api import router as interior_router
 from .pipeline_exts import IMAGE_EXTS
 from .schemas import ClaimOut, Stats, TrackEvidence
 from .verification import inspect, inspect_images, verify
@@ -23,6 +24,7 @@ async def lifespan(app):
 app = FastAPI(title="DiVision API", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 app.mount("/evidence", StaticFiles(directory=config.EVIDENCE), name="evidence")
+app.include_router(interior_router)
 
 
 def _out(r) -> ClaimOut:

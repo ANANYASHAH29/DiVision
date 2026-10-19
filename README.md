@@ -26,15 +26,27 @@ video / photos -> YOLO11-Seg (detect + segment damage) -> BoT-SORT (track across
 * No parts model yet, so damage is not tied to a named part.
 * CPU inference is slow (about 0.5 s per frame). A GPU or OpenVINO export is needed for real-time use.
 
-## Run
-```
-python -m venv .venv
-.venv\Scripts\pip install -r backend/requirements.txt
-.venv\Scripts\python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
-cd frontend && npm install && npm run dev          # http://localhost:5173
-cd backend && ..\.venv\Scripts\python -m pytest tests
-```
-Model weights are not in git. Put `damage_seg.pt` in `data/weights/` (ask the maintainers).
+## Setup, step by step
+Requirements: Git, Python 3.10-3.12, Node.js 20+.
+
+1. **Clone:** `git clone https://github.com/ANANYASHAH29/DiVision.git` then `cd DiVision`
+2. **Python environment** (Windows PowerShell; Mac/Linux: `source .venv/bin/activate`):
+   ```
+   python -m venv .venv
+   .venv\Scripts\activate
+   pip install -r backend/requirements.txt      # large (PyTorch), one-time
+   ```
+3. **Check it works:** `cd backend` then `python -m pytest -q tests` should print `12 passed`.
+4. **Start the backend** from the repo root (keep this terminal open):
+   `python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000`
+   API docs: http://127.0.0.1:8000/docs
+5. **Start the dashboard** in a second terminal: `cd frontend`, `npm install`, `npm run dev`, then open
+   http://localhost:5173
+6. **Model weights (exterior inspections only):** not in git. Get `damage_seg.pt` from the maintainers and put it in
+   `data/weights/`. Check http://127.0.0.1:8000/api/health shows `"damage_weights": true`.
+7. **Run on one video without the UI:** `python scripts/run_video.py video.mp4`
+
+Interior / odometer work does not need the weights: see [docs/TEAMMATE_INTERIOR.md](docs/TEAMMATE_INTERIOR.md).
 
 ## Train
 1. Download CarDD (https://cardd-ustc.github.io) and extract to `data/raw/CarDD_release`.
