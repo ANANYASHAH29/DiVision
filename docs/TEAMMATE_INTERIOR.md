@@ -8,8 +8,8 @@ condition.
 **Why the odometer matters:** people roll back odometers to get cheaper cover. We read the km from the dashboard and
 compare it with the previous inspection of the *same chassis number*. A lower reading than before is a fraud flag.
 
-**You do NOT need to train a model to start.** Use a pretrained OCR library first. Only train a small detector if
-the baseline is not accurate enough (see step 6).
+**You do NOT train any model.** Use a pretrained OCR library (see step 6 if accuracy is poor). The README has a
+short checklist version of this guide ("START HERE").
 
 ---
 
@@ -104,10 +104,10 @@ Image preprocessing (grayscale, contrast, upscale, deskew), try Tesseract or Pad
 and return `None` with a note when the reading is not trustworthy. **Never guess**: a wrong reading is worse than
 no reading.
 
-### Step 6: only if accuracy is poor: train a small detector
-If the baseline is below about 80%, train a small YOLO to find the odometer display first, then OCR the crop.
-Search Roboflow Universe for an "odometer" or "dashboard" dataset, train a nano model on Google Colab
-(`pip install ultralytics`, `YOLO("yolo11n.pt").train(...)`; ask Ananya how she trained on Colab).
+### Step 6: if accuracy is poor (no model training needed)
+If the baseline is below about 80%, do NOT train a model. Instead: crop to the dashboard cluster before OCR, try
+more preprocessing, try Tesseract or PaddleOCR instead of EasyOCR, or use the vision-LLM fallback below. Tell
+Ananya which photos fail and why; that is useful to know and goes in the presentation as a limitation.
 
 ### Step 7: rollback check
 Add an `odometer_km` column to the database the same way `chassis_no` was added in `db.init()` in
