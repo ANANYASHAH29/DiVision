@@ -1,0 +1,34 @@
+# --- never commit: customer / evaluation photos, uploads, evidence frames, databases ---
+data/eval/
+data/uploads/
+data/evidence/
+data/raw/
+data/raw_cardd/
+data/cardd_subset/
+data/cardd_yolo/
+data/tvdt_frames/
+data/runs/
+data/verifier/
+data/*.db
+data/*.sqlite*
+# model weights are shared directly (not via git)
+data/weights/
+*.pt
+*.pth
+*.onnx
+*.npz
+*.zip
+
+# --- environments / build output ---
+.venv/
+.dist/
+node_modules/
+frontend/dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+.vite/
+.env
+.env.*
+*.log
+.claude/
