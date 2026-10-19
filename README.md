@@ -14,7 +14,7 @@ video / photos -> YOLO11-Seg (detect + segment damage) -> BoT-SORT (track across
 
 ---
 
-# START HERE (teammate)
+# START HERE 
 
 ## Part 1: set up (about 20 minutes)
 You need **Git**, **Python 3.10-3.12** and **Node.js 20+**. Check: `git --version`, `python --version`, `node --version`.
@@ -59,7 +59,7 @@ npm run dev
 Open http://localhost:5173 . You should see the DiVision dashboard.
 
 ## Part 2: check everything works (5 minutes)
-Tick each box before you start your task. If one fails, fix it or message Ananya.
+Tick each box before you start your task. 
 
 - [ ] `python -m pytest -q backend/tests` prints `12 passed`
 - [ ] http://127.0.0.1:8000/api/health shows `"damage_weights":true`
@@ -104,12 +104,6 @@ already included. Check `git status` before every commit. Stuck for 30 minutes? 
   DAMAGED earlier can never come back CLEAN without a physical check.
 * **Coverage rules:** a vehicle is only certified clean if enough of it was filmed (enough frames, or >= 4 photos).
 * **Dashboard:** React + Tailwind insurer queue with evidence frames per damage.
-
-## Known limitations (honest)
-* Reflections and water droplets on glass are sometimes reported as damage (see [docs/EVALUATION.md](docs/EVALUATION.md)).
-  Retraining with better data is being done by Ananya.
-* No parts model yet, so damage is not tied to a named part.
-* CPU inference is slow (about 0.5 s per frame). A GPU or an OpenVINO export is needed for real-time use.
 
 ## Layout
 `backend/app` API, pipeline and rules - `frontend/src` dashboard - `scripts` data prep and evaluation -
